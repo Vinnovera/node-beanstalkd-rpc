@@ -25,7 +25,7 @@ client.put(
 ``` 
 
 ## Consume jobs
-`beanstalk.reserve(tube, successCallback function(payload, finishedCallback) {})`
+`client.reserve(tube, successCallback function(payload, finishedCallback) {})`
 * `successCallback` fires when a payload has been reserved from the queue. 
 * `finishedCallback` is a function used to report the job as being finished with an optional payload as first argument.
 
@@ -33,7 +33,7 @@ client.put(
 var bRPC	= require('./beanstalkd-rpc.js'),
 	client	= new bRPC(localhost, 11300);
 
-beanstalk.reserve('work', function(payload, finishedCallback) {
+client.reserve('work', function(payload, finishedCallback) {
 	console.log('job received containing ' + payload);
 
 	finishedCallback('Work done!', function() { 
