@@ -1,0 +1,1 @@
+module.exports = require('./lib/beanstalkd-rpc.js');

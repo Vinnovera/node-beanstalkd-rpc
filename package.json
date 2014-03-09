@@ -1,0 +1,33 @@
+{
+  "name": "node-beanstalkd-rpc",
+  "version": "1.0.0",
+  "description": "beanstalkd based RPC client for node",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "dependencies": {
+    "async": "~0.2.10",
+    "fivebeans": "~1.1.1",
+    "node-uuid": "~1.4.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gewfy@github.com/Vinnovera/node-beanstalkd-rpc.git"
+  },
+  "keywords": [
+    "node",
+    "beanstalkd",
+    "rpc"
+  ],
+  "author": "Jakob Öhman <jakob@vinnovera.se> (http://vinnovera.se/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Vinnovera/node-beanstalkd-rpc/issues"
+  },
+  "homepage": "https://github.com/Vinnovera/node-beanstalkd-rpc"
+}
