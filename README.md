@@ -4,7 +4,7 @@ A slim and simple beanstalkd based RPC client for node, based on fivebeans.
 https://github.com/ceejbot/fivebeans
 
 ## Produce jobs
-`client.*put*(tube, payload, successCallback function(err, jobid) {}, replyCallback function(payload) {}, priority, delay, ttr)`
+`client.put(tube, payload, successCallback function(err, jobid) {}, replyCallback function(payload) {}, priority, delay, ttr)`
 * `successCallback` fires when the payload has been sent.
 * `replyCallback` fires when a reply payload is received.
 
@@ -14,7 +14,7 @@ var bRPC	= require('./beanstalkd-rpc.js'),
 
 client.put(
 	'work', 
-	'BOOM', 
+	'Go work!', 
 	function() { 
 		console.log('job sent'); 
 	}, 
@@ -25,7 +25,7 @@ client.put(
 ``` 
 
 ## Consume jobs
-`beanstalk.*reserve*(tube, successCallback function(payload, finishedCallback) {})`
+`beanstalk.reserve(tube, successCallback function(payload, finishedCallback) {})`
 * `successCallback` fires when a payload has been reserved from the queue. 
 * `finishedCallback` is a function used to report the job as being finished with an optional payload as first argument.
 
@@ -36,7 +36,7 @@ var bRPC	= require('./beanstalkd-rpc.js'),
 beanstalk.reserve('work', function(payload, finishedCallback) {
 	console.log('job received containing ' + payload);
 
-	finishedCallback('Job done, function() { 
+	finishedCallback('Work done!', function() { 
 		console.log('reply successfully sent');
 	});
 })
