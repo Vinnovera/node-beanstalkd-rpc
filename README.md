@@ -13,7 +13,7 @@ var bRPC	= require('./beanstalkd-rpc.js'),
 	client	= new bRPC(localhost, 11300);
 
 client.put(
-	'work', 
+	'workQueue', 
 	'Go work!', 
 	function() { 
 		console.log('job sent'); 
@@ -33,7 +33,7 @@ client.put(
 var bRPC	= require('./beanstalkd-rpc.js'),
 	client	= new bRPC(localhost, 11300);
 
-client.reserve('work', function(payload, finishedCallback) {
+client.reserve('workQueue', function(payload, finishedCallback) {
 	console.log('job received containing ' + payload);
 
 	finishedCallback('Work done!', function() { 
