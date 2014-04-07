@@ -1,7 +1,7 @@
 {
   "name": "node-beanstalkd-rpc",
-  "version": "1.0.0",
-  "description": "beanstalkd based RPC client for node",
+  "version": "1.0.1",
+  "description": "Simple beanstalkd based RPC client for node",
   "main": "index.js",
   "directories": {
     "example": "examples"
