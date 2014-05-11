@@ -9,35 +9,39 @@ https://github.com/ceejbot/fivebeans
 * `replyCallback` fires when a reply payload is received.
 
 ```javascript
-var bRPC	= require('./beanstalkd-rpc.js'),
+var bRPC	= require('node-beanstalkd-rpc'),
 	client	= new bRPC(localhost, 11300);
 
 client.put(
-	'workQueue', 
-	'Go work!', 
-	function() { 
-		console.log('job sent'); 
-	}, 
-	function(payload) { 
-		console.log('job is finished and returned ' + payload); 
+	'workQueue',
+	'Go work!',
+	function(err) {
+		console.log('job sent');
+	},
+	function(err, finished, payload) {
+		console.log('Got reply ' + payload + ' and job is ' + (finished ? 'finished' : 'not finished'));
 	}
 );
 ``` 
 
 ## Consume jobs
-`client.reserve(tube, successCallback function(payload, finishedCallback) {})`
+`client.reserve(tube, successCallback function(payload, reply) {})`
 * `successCallback` fires when a payload has been reserved from the queue. 
-* `finishedCallback` is a function used to report the job as being finished with an optional payload as first argument.
+* `reply` is a function used to report progress or mark the job as being finished. With an optional payload as argument.
 
 ```javascript
-var bRPC	= require('./beanstalkd-rpc.js'),
+var bRPC	= require('node-beanstalkd-rpc'),
 	client	= new bRPC(localhost, 11300);
 
-client.reserve('workQueue', function(payload, finishedCallback) {
+client.reserve('workQueue', function(err, payload, reply) {
 	console.log('job received containing ' + payload);
 
-	finishedCallback('Work done!', function() { 
-		console.log('reply successfully sent');
+	reply(false, '50% done!', function() {
+		console.log('progress successfully sent');
+	});
+
+	reply(true, 'Work done!', function() {
+		console.log('done successfully sent');
 	});
 })
 ``` 
