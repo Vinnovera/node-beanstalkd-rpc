@@ -10,7 +10,7 @@ https://github.com/ceejbot/fivebeans
 
 ```javascript
 var bRPC	= require('node-beanstalkd-rpc'),
-	client	= new bRPC(localhost, 11300);
+	client	= new bRPC('localhost', 11300);
 
 client.put(
 	'workQueue',
@@ -31,7 +31,7 @@ client.put(
 
 ```javascript
 var bRPC	= require('node-beanstalkd-rpc'),
-	client	= new bRPC(localhost, 11300);
+	client	= new bRPC('localhost', 11300);
 
 client.reserve('workQueue', function(err, payload, reply) {
 	console.log('job received containing ' + payload);
